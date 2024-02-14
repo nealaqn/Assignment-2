@@ -51,15 +51,19 @@
     
 	<script>
 
-		const image_root_names = [];
+		const image_root_names = ["Cat", "Chicken", "Cow", "Dog", "Goat"];
 
 		const first_load = () => { 
+
+			set_main_image(0);
 
 			// TODO: set the main image to the first image in the array (index 0)
 			// TODO: set the thumbnail images		
 		}
 	
 		const set_main_image = (index) => {
+
+			document.querySelector("#main-image").src = "images/" + image_root_names[index] + ".jpg";
 			// TODO: set the main-image src image based on the passed parameter	    
 	
 			// TODO: set the hidden textbox to the current index (if you take this approach)	    
@@ -74,6 +78,7 @@
 			// TODO: loop through the global array and build the html
 			//       - add an onclick handler to each thumbnail to call set_main_image(index)
 	
+
 			// TODO: add the html to the divThumbArea
 	
 		} 
