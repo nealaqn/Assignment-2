@@ -51,12 +51,13 @@
     
 	<script>
 
-		const image_root_names = ["Cat", "Fish", "Cow", "Dog", "Fox"];
+		const image_root_names = ["Cat", "Cow", "Dog", "Fox", "Fish"]
 
 		const first_load = () => { 
 
 			set_main_image(0);
 			set_thumbnails();
+
 
 			// TODO: set the main image to the first image in the array (index 0)
 			// TODO: set the thumbnail images		
@@ -64,7 +65,7 @@
 	
 		const set_main_image = (index) => {
 
-			document.querySelector("#main-image").src = "images/" + image_root_names[index] + "Full.png";
+			document.querySelector("#main-image").src = "images/" + image_root_names[index] + "Full.png"
 			// TODO: set the main-image src image based on the passed parameter	    
 	
 			// TODO: set the hidden textbox to the current index (if you take this approach)	    
@@ -75,22 +76,14 @@
 	
 		const set_thumbnails = () => {
 
-
-			image_root_names.forEach((animal, array_index) => {
-				
+			image_root_names.forEach((images, array_index) => {
 				const new_thumb = document.createElement("img");
-
-				new_thumb.src = "images/" + animal + "Thumb.png";
-
-				new_thumb.className = "clickable";
-
+				new_thumb.src = "images/" + images + "Thumb.png";
+				new_thumb.classList = "clickable";
 				new_thumb.addEventListener("click", () => {
 					set_main_image(array_index);
 				})
-
 				document.querySelector("#thumbnail-area").append(new_thumb);
-
-				
 			})
 
 			// TODO: declare a variable for the thumbnail strip html (optional)
