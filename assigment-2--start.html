@@ -11,7 +11,13 @@
 	    
 	    img.clickable{
 	        cursor:pointer;
+			opacity: 0.5;
 	    }
+
+		.clickable.selected-thumbnail {
+			opacity: 1;
+		}
+
 	
 	</style>
 	
@@ -35,7 +41,7 @@
 	        </tr> 
 	        <tr>
 	            <td>
-	                <img src="images/first.png" id="first-btn" onclick="set_main_image(0)"/>            
+	                <img src="images/first.png" id="first-btn" onclick="set_nav_first()"/>            
 	                <img src="images/prev.png" id="prev-btn" onclick="set_nav_prev()"/>
 	            </td>
 	            <td>
@@ -81,7 +87,7 @@
 
 				new_thumb.src = "images/" + animal + "Thumb.png";
 
-				new_thumb.className = "clickable";
+				new_thumb.className = "clickable" + (current_index === array_index ? " selected-thumbnail" : "");
 
 				new_thumb.addEventListener("click", () => {
 					set_main_image(array_index);
@@ -94,17 +100,24 @@
 		} 
 	
 		const update_thumbnails = (current_index) => {
+
+			const thumbnails = document.querySelectorAll(".clickable");
+
+			thumbnails.forEach((thumb, index) => {
+				return (current_index === index) ? thumb.classList.add("selected-thumbnail") : thumb.classList.remove("selected-thumbnail")
+			})
+
 			// TODO: you'll need to loop through all thumbnails
 			//		- turn on an indicator (eg opacity:1.0) if it's the selected thumb
 			//		- turn off the indicator (eg opacity:0.75) if it's not
 		} 
 	
 		const set_nav_last = () => {
-			set_main_image(last_index)
+			set_main_image(image_root_names.length - 1)
 		}
 
 		const set_nav_first = () => {
-			// TODO: navigate to the last image (should work for any size array)
+			set_main_image(0)
 		}
 	
 		const set_nav_next = () => {
