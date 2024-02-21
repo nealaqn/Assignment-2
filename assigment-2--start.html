@@ -35,41 +35,40 @@
 	        </tr> 
 	        <tr>
 	            <td>
-	                <img src="images/first.png" id="first-btn" />            
-	                <img src="images/prev.png" id="prev-btn" />
+	                <img src="images/first.png" id="first-btn" onclick="set_main_image(0)"/>            
+	                <img src="images/prev.png" id="prev-btn" onclick="set_nav_prev()"/>
 	            </td>
 	            <td>
 	                <div id="thumbnail-area"></div>	        
 	            </td>
 	            <td>
-	                <img src="images/next.png" id="next-btn" />            
-	                <img src="images/last.png" id="prev-btn" />
+	                <img src="images/next.png" id="next-btn" onclick="set_nav_next()"/>            
+	                <img src="images/last.png" id="prev-btn" onclick="set_nav_last()"/>
 	            </td>
 	        </tr>	    
 	    </table>       
-	</div>
+	</div>  
     
 	<script>
 
+		let current_index = 0;
+
 		const image_root_names = ["Cat", "Fish", "Cow", "Dog", "Fox"];
+		
 
 		const first_load = () => { 
 
 			set_main_image(0);
 			set_thumbnails();
 
-			// TODO: set the main image to the first image in the array (index 0)
-			// TODO: set the thumbnail images		
 		}
 	
 		const set_main_image = (index) => {
 
 			document.querySelector("#main-image").src = "images/" + image_root_names[index] + "Full.png";
-			// TODO: set the main-image src image based on the passed parameter	    
-	
-			// TODO: set the hidden textbox to the current index (if you take this approach)	    
-	
-			// update the thumbnails based on the current selection
+
+			current_index = index;
+
 			update_thumbnails(index);
 		}
 	
@@ -90,16 +89,7 @@
 
 				document.querySelector("#thumbnail-area").append(new_thumb);
 
-				
 			})
-
-			// TODO: declare a variable for the thumbnail strip html (optional)
-	
-			// TODO: loop through the global array and build the html
-			//       - add an onclick handler to each thumbnail to call set_main_image(index)
-	
-
-			// TODO: add the html to the divThumbArea
 	
 		} 
 	
@@ -109,22 +99,28 @@
 			//		- turn off the indicator (eg opacity:0.75) if it's not
 		} 
 	
-		const set_nav_first = () => {
-			// TODO: navigate to the first image (this is the easy one since it's always index zero)
-			
-		}
-	
 		const set_nav_last = () => {
+			set_main_image(last_index)
+		}
+
+		const set_nav_first = () => {
 			// TODO: navigate to the last image (should work for any size array)
 		}
 	
 		const set_nav_next = () => {
-			// TODO: move to the next image, unless at the end in which case show the first image
+
+			const next_index = (current_index >= image_root_names.length - 1) ?  0 : current_index + 1;
+
+			set_main_image(next_index);
 			
 		}
 	
 		const set_nav_prev = () => {
-			// TODO: move to the previous image, unless at the end in which case show the last image
+
+			const prev_index = (current_index == 0) ? current_index = image_root_names.length - 1 : current_index - 1;
+
+			set_main_image(prev_index);
+
 		}	
 	
 		window.addEventListener("load", first_load);
