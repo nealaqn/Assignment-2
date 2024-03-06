@@ -86,7 +86,7 @@
 
 				new_thumb.src = "images/" + animal + "Thumb.png";
 
-				new_thumb.className = "clickable" + (current_index === array_index ? " selected-thumbnail" : "");
+				new_thumb.className = "clickable";
 
 				new_thumb.addEventListener("click", () => {
 					set_main_image(array_index);
@@ -103,7 +103,8 @@
 			const thumbnails = document.querySelectorAll(".clickable");
 
 			thumbnails.forEach((thumb, index) => {
-				return (current_index === index) ? thumb.classList.add("selected-thumbnail") : thumb.classList.remove("selected-thumbnail")
+				(current_index === index) ? thumb.classList.add("selected-thumbnail") : thumb.classList.remove("selected-thumbnail")
+				// console.log("hello")
 			})
 
 			// TODO: you'll need to loop through all thumbnails
