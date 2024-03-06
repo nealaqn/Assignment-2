@@ -13,11 +13,6 @@
 	        cursor:pointer;
 			opacity: 0.5;
 	    }
-
-		.clickable.selected-thumbnail {
-			opacity: 1;
-		}
-
 	
 	</style>
 	
@@ -88,6 +83,8 @@
 
 				new_thumb.className = "clickable";
 
+				new_thumb.style.opacity = (current_index == array_index) ? "1" : "0.5";
+
 				new_thumb.addEventListener("click", () => {
 					set_main_image(array_index);
 				})
@@ -103,7 +100,7 @@
 			const thumbnails = document.querySelectorAll(".clickable");
 
 			thumbnails.forEach((thumb, index) => {
-				(current_index === index) ? thumb.classList.add("selected-thumbnail") : thumb.classList.remove("selected-thumbnail")
+				thumb.style.opacity = (current_index == index) ? "1" : "0.5";
 				// console.log("hello")
 			})
 
