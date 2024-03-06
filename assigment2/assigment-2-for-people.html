@@ -41,15 +41,15 @@
 	        </tr> 
 	        <tr>
 	            <td>
-	                <img src="images/first.png" id="first-btn" onclick="set_nav_first()"/>            
-	                <img src="images/prev.png" id="prev-btn" onclick="set_nav_prev()"/>
+	                <img src="images/first.png" id="first-btn"/>            
+	                <img src="images/prev.png" id="prev-btn"/>
 	            </td>
 	            <td>
 	                <div id="thumbnail-area"></div>	        
 	            </td>
 	            <td>
-	                <img src="images/next.png" id="next-btn" onclick="set_nav_next()"/>            
-	                <img src="images/last.png" id="prev-btn" onclick="set_nav_last()"/>
+	                <img src="images/next.png" id="next-btn"/>            
+	                <img src="images/last.png" id="prev-btn"/>
 	            </td>
 	        </tr>	    
 	    </table>       
@@ -73,26 +73,20 @@
 
 			document.querySelector("#main-image").src = "images/" + image_root_names[index] + "Full.png";
 
-			current_index = index;
-
-			update_thumbnails(index);
 		}
 	
 		const set_thumbnails = () => {
 
-			image_root_names.forEach((animal, array_index) => {
+
+			image_root_names.forEach((animal, indexNumber) => {
 				
-				const new_thumb = document.createElement("img");
+				const addElement = document.createElement("img");
 
-				new_thumb.src = "images/" + animal + "Thumb.png";
+				addElement.src = "images/" + animal + "Thumb.png";
 
-				new_thumb.className = "clickable" + (current_index === array_index ? " selected-thumbnail" : "");
+				addElement.addEventListener("click", () => { set_main_image(indexNumber); })
 
-				new_thumb.addEventListener("click", () => {
-					set_main_image(array_index);
-				})
-
-				document.querySelector("#thumbnail-area").append(new_thumb);
+				document.querySelector("#thumbnail-area").append(addElement);
 
 			})
 	
@@ -100,38 +94,25 @@
 	
 		const update_thumbnails = (current_index) => {
 
-			const thumbnails = document.querySelectorAll(".clickable");
-
-			thumbnails.forEach((thumb, index) => {
-				return (current_index === index) ? thumb.classList.add("selected-thumbnail") : thumb.classList.remove("selected-thumbnail")
-			})
-
-			// TODO: you'll need to loop through all thumbnails
-			//		- turn on an indicator (eg opacity:1.0) if it's the selected thumb
-			//		- turn off the indicator (eg opacity:0.75) if it's not
 		} 
 	
 		const set_nav_last = () => {
-			set_main_image(image_root_names.length - 1)
+
 		}
 
 		const set_nav_first = () => {
-			set_main_image(0)
+
 		}
 	
 		const set_nav_next = () => {
 
-			const next_index = (current_index >= image_root_names.length - 1) ?  0 : current_index + 1;
 
-			set_main_image(next_index);
 			
 		}
 	
 		const set_nav_prev = () => {
 
-			const prev_index = (current_index == 0) ? current_index = image_root_names.length - 1 : current_index - 1;
 
-			set_main_image(prev_index);
 
 		}	
 	
