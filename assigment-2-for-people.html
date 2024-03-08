@@ -41,15 +41,15 @@
 	        </tr> 
 	        <tr>
 	            <td>
-	                <img src="images/first.png" id="first-btn"/>            
-	                <img src="images/prev.png" id="prev-btn"/>
+	                <img src="images/first.png" id="first-btn" onclick="set_nav_first()"/>            
+	                <img src="images/prev.png" id="prev-btn" onclick="set_nav_prev()"/>
 	            </td>
 	            <td>
 	                <div id="thumbnail-area"></div>	        
 	            </td>
 	            <td>
-	                <img src="images/next.png" id="next-btn"/>            
-	                <img src="images/last.png" id="prev-btn"/>
+	                <img src="images/next.png" id="next-btn" onclick="set_nav_next()"/>            
+	                <img src="images/last.png" id="prev-btn" onclick="set_nav_last()"/>
 	            </td>
 	        </tr>	    
 	    </table>       
@@ -59,12 +59,14 @@
 
 		let current_index = 0;
 
+		// const firstBtn = document.querySelector("#first-btn");
 		const image_root_names = ["Cat", "Fish", "Cow", "Dog", "Fox"];
+		
 		
 
 		const first_load = () => { 
 
-			set_main_image(0);
+			set_main_image(4);
 			set_thumbnails();
 
 		}
@@ -73,10 +75,13 @@
 
 			document.querySelector("#main-image").src = "images/" + image_root_names[index] + "Full.png";
 
+			current_index = index;
+
+
+
 		}
 	
 		const set_thumbnails = () => {
-
 
 			image_root_names.forEach((animal, indexNumber) => {
 				
@@ -84,7 +89,9 @@
 
 				addElement.src = "images/" + animal + "Thumb.png";
 
-				addElement.addEventListener("click", () => { set_main_image(indexNumber); })
+				addElement.addEventListener("click", () => { 
+					set_main_image(indexNumber);
+				})
 
 				document.querySelector("#thumbnail-area").append(addElement);
 
@@ -94,25 +101,31 @@
 	
 		const update_thumbnails = (current_index) => {
 
+			
+
 		} 
 	
 		const set_nav_last = () => {
-
+			set_main_image(4);
 		}
-
+		
 		const set_nav_first = () => {
-
+			set_main_image(0);
 		}
+
+		// firstBtn.addEventListener("click", set_nav_first);
 	
 		const set_nav_next = () => {
 
-
+			const nextBtn = (current_index >= image_root_names.length - 1) ? 0 : current_index + 1;
+			set_main_image(nextBtn);
 			
 		}
 	
 		const set_nav_prev = () => {
 
-
+			const prevBtn = (current_index <= 0) ? 4 : current_index - 1;
+			set_main_image(prevBtn);
 
 		}	
 	
