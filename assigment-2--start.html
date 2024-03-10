@@ -11,7 +11,6 @@
 	    
 	    img.clickable{
 	        cursor:pointer;
-			opacity: 0.5;
 	    }
 	
 	</style>
@@ -101,12 +100,7 @@
 
 			thumbnails.forEach((thumb, index) => {
 				thumb.style.opacity = (current_index == index) ? "1" : "0.5";
-				// console.log("hello")
 			})
-
-			// TODO: you'll need to loop through all thumbnails
-			//		- turn on an indicator (eg opacity:1.0) if it's the selected thumb
-			//		- turn off the indicator (eg opacity:0.75) if it's not
 		} 
 	
 		const set_nav_last = () => {
