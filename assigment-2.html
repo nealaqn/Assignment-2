@@ -64,7 +64,7 @@
 		let current_index = 0;
 
 		// Created an array containing rootnames of the images
-		const image_root_names = ["Cat", "Fish", "Cow", "Dog", "Fox"];
+		const phili_place_root_names = ["Enchanted", "Boracay", "Siargao", "Kawasan", "Oslob"];
 		
 		// Created an arrow function. When the window gets loaded, this function initialize
 		const first_load = () => { 
@@ -77,7 +77,7 @@
 		// Created a function that sets the main image based on the parameter "index".
 		const set_main_image = (index) => {
 			// This sets the source of the main image from the given root name.
-			document.querySelector("#main-image").src = "images/" + image_root_names[index] + "Full.png";
+			document.querySelector("#main-image").src = "images/" + phili_place_root_names[index] + "Full.png";
 
 			// This updates the current index base on the given index.
 			current_index = index;
@@ -91,7 +91,7 @@
 
 			// This goes through the array then gets the root name and indexes
 			// Then this arrow function runs until it goes through all the array.
-			image_root_names.forEach((animal, array_index) => {
+			phili_place_root_names.forEach((animal, array_index) => {
 				
 				// Created a variable the creates an element (HTML TAG) image(<img>).
 				const new_thumb = document.createElement("img");
@@ -137,7 +137,7 @@
 		// This function sets the last image (value) in the array
 		const set_nav_last = () => {
 			// This sets the main image of the last value in the array
-			set_main_image(image_root_names.length - 1)
+			set_main_image(phili_place_root_names.length - 1)
 		}
 
 		// This function sets the first image (value) in the array
@@ -151,7 +151,7 @@
 
 			// This calculates the next index, which means if you go past the length of the images length
 			// this takes you back to the beginnning of the image
-			const next_index = (current_index >= image_root_names.length - 1) ?  0 : current_index + 1;
+			const next_index = (current_index >= phili_place_root_names.length - 1) ?  0 : current_index + 1;
 
 			// set the main image based on the next index
 			set_main_image(next_index);
@@ -163,7 +163,7 @@
 
 			// This calculates the previous index, which means if you go below the length of the images length
 			// this takes you back to the latest of the image
-			const prev_index = (current_index == 0) ? current_index = image_root_names.length - 1 : current_index - 1;
+			const prev_index = (current_index == 0) ? current_index = phili_place_root_names.length - 1 : current_index - 1;
 
 			// set the main image based on the previous index
 			set_main_image(prev_index);
