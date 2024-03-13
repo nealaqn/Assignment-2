@@ -35,14 +35,22 @@
 	        </tr> 
 	        <tr>
 	            <td>
-	                <img src="images/first.png" id="first-btn" onclick="set_nav_first()"/>            
+					<!-- Added an onclick atribute which is when it is clicked it -->
+					<!-- runs the function set_nav_first() -->
+	                <img src="images/first.png" id="first-btn" onclick="set_nav_first()"/>    
+					<!-- Added an onclick atribute which is when it is clicked it -->
+					<!-- runs the function set_nav_prev() -->        
 	                <img src="images/prev.png" id="prev-btn" onclick="set_nav_prev()"/>
 	            </td>
 	            <td>
 	                <div id="thumbnail-area"></div>	        
 	            </td>
 	            <td>
-	                <img src="images/next.png" id="next-btn" onclick="set_nav_next()"/>            
+					<!-- Added an onclick atribute which is when it is clicked it -->
+					<!-- runs the function set_nav_next() -->
+	                <img src="images/next.png" id="next-btn" onclick="set_nav_next()"/> 
+					<!-- Added an onclick atribute which is when it is clicked it -->
+					<!-- runs the function set_nav_last() -->           
 	                <img src="images/last.png" id="prev-btn" onclick="set_nav_last()"/>
 	            </td>
 	        </tr>	    
@@ -52,83 +60,117 @@
 	<script>
 		// Assignmnt #2, Neal Aquino - A01293470
 
-
+		// Created a variable for tracking the current index
 		let current_index = 0;
 
+		// Created an array containing rootnames of the images
 		const image_root_names = ["Cat", "Fish", "Cow", "Dog", "Fox"];
 		
-
+		// Created an arrow function. When the window gets loaded, this function initialize
 		const first_load = () => { 
-
-			set_main_image(0);
+			// set the main image function as the current index and thumbnail
+			// Initializing the two function that is called.
+			set_main_image(current_index);
 			set_thumbnails();
-
 		}
 	
+		// Created a function that sets the main image based on the parameter "index".
 		const set_main_image = (index) => {
-
+			// This sets the source of the main image from the given root name.
 			document.querySelector("#main-image").src = "images/" + image_root_names[index] + "Full.png";
 
+			// This updates the current index base on the given index.
 			current_index = index;
 
+			// This updates the thumbnail version base on the current index.
 			update_thumbnails(index);
 		}
 	
+		// Created a function that creates and sets the thumbnail images
 		const set_thumbnails = () => {
 
+			// This goes through the array then gets the root name and indexes
+			// Then this arrow function runs until it goes through all the array.
 			image_root_names.forEach((animal, array_index) => {
 				
+				// Created a variable the creates an element (HTML TAG) image(<img>).
 				const new_thumb = document.createElement("img");
 
+				// This sets the source of the thumbnail base on root name given.
 				new_thumb.src = "images/" + animal + "Thumb.png";
 
+				// This sets the class name of the thumbnail
 				new_thumb.className = "clickable";
 
+				// This sets the opacity of the thumbnail.
+				// If the current index is similar ti array index it will be fully shown
+				// If not it will be not fully seen.
 				new_thumb.style.opacity = (current_index == array_index) ? "1" : "0.5";
 
+				// This creates a click event listener for each of the thumbnails.
+				// So when it is clicked it runs the set_main_image function
+				// with the value of the index
 				new_thumb.addEventListener("click", () => {
 					set_main_image(array_index);
 				})
 
+				// This appends the thumbnail to the id tag called thumbnail-area
 				document.querySelector("#thumbnail-area").append(new_thumb);
 
 			})
 	
 		} 
-	
+		
+		// This creates an arrow function that updates the opacities of thumbnails
+		// based on the current index.
 		const update_thumbnails = (current_index) => {
 
+			// This selects all the class with clickabale and set as "thumbnail"
 			const thumbnails = document.querySelectorAll(".clickable");
 
+			// This goes through each thumbnails and update the opacity
 			thumbnails.forEach((thumb, index) => {
 				thumb.style.opacity = (current_index == index) ? "1" : "0.5";
 			})
 		} 
-	
+		
+		// This function sets the last image (value) in the array
 		const set_nav_last = () => {
+			// This sets the main image of the last value in the array
 			set_main_image(image_root_names.length - 1)
 		}
 
+		// This function sets the first image (value) in the array
 		const set_nav_first = () => {
+			// This sets the main image of the first value in the array
 			set_main_image(0)
 		}
 	
+		// This function sets the main image to the next image in the array
 		const set_nav_next = () => {
 
+			// This calculates the next index, which means if you go past the length of the images length
+			// this takes you back to the beginnning of the image
 			const next_index = (current_index >= image_root_names.length - 1) ?  0 : current_index + 1;
 
+			// set the main image based on the next index
 			set_main_image(next_index);
 			
 		}
 	
+		// This function sets the main image to the previous image in the array
 		const set_nav_prev = () => {
 
+			// This calculates the previous index, which means if you go below the length of the images length
+			// this takes you back to the latest of the image
 			const prev_index = (current_index == 0) ? current_index = image_root_names.length - 1 : current_index - 1;
 
+			// set the main image based on the previous index
 			set_main_image(prev_index);
 
 		}	
 	
+		// This add a listener to launch the function first_load when the site is opened.
 		window.addEventListener("load", first_load);
 
 	</script>
